@@ -1,7 +1,7 @@
 const Express = require("express");
 const Router = Express.Router();
 const axios = require("axios");
-require('dotenv').config();
+require("dotenv").config();
 
 Router.route("/").post(function (req, res, next) {
   const orderPayload = req.body;
@@ -10,7 +10,7 @@ Router.route("/").post(function (req, res, next) {
       status: 200,
       message: "Lab order accepted",
       order_id: orderPayload.order_id,
-      tests: orderPayload.tests.length(),
+      tests: orderPayload.tests,
     });
   } else {
     res.status(400).send({
@@ -21,7 +21,8 @@ Router.route("/").post(function (req, res, next) {
 });
 
 Router.route("/results").post(async function (req, res, next) {
-  const resultsEndpoint = process.env.RESULTS_ENDPOINT+process.env.ACCESS_TOKEN;
+  const resultsEndpoint =
+    process.env.RESULTS_ENDPOINT + process.env.ACCESS_TOKEN;
   await axios
     .post(resultsEndpoint, req.body)
     .then((response) => {
