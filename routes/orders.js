@@ -5,7 +5,7 @@ require("dotenv").config();
 
 Router.route("/").post(function (req, res, next) {
   const orderPayload = req.body;
-  if (orderPayload.length > 0) {
+  if (!!orderPayload) {
     res.status(201).send({
       status: 200,
       message: "Lab order accepted",
