@@ -27,6 +27,7 @@ Router.route("/results").post(async function (req, res, next) {
     .post(resultsEndpoint, req.body)
     .then((response) => {
       console.log(response.data);
+      return response.data;
     })
     .catch((error) => {
       console.error(error.response.data);
