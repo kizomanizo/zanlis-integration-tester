@@ -10,7 +10,6 @@ Router.route("/").post(function (req, res, next) {
       status: 200,
       message: "Lab order accepted",
       order_id: orderPayload.order_id,
-      tests: orderPayload.tests,
     });
   } else {
     res.status(400).send({
@@ -26,8 +25,10 @@ Router.route("/results").post(async function (req, res, next) {
   await axios
     .post(resultsEndpoint, req.body)
     .then((response) => {
-      console.log(response.data);
-      return response.data;
+      res.status(200).send({
+        status: 200,
+        message: response.data,
+      });
     })
     .catch((error) => {
       console.error(error.response.data);
