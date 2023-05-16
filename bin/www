@@ -10,7 +10,7 @@ var http = require("http");
 
 // For HTTPS certificate
 const https = require("https");
-const fs = request("fs");
+const fs = require("fs");
 
 /**
  * Get port from environment and store in Express.
